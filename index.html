@@ -1,8 +1,283 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101827">
+<title>MHA TRIO | Finishing & Interiors</title>
+<style>
+:root{--bg:#0b1220;--panel:#131e30;--line:#2b3b52;--gold:#d9b875;--gold2:#f3dfb1;--txt:#f6f7fb;--muted:#aab7c9;--field:#0b1423}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100dvh;padding:max(14px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(14px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left));background:radial-gradient(ellipse at 80% 0,#24334b 0,transparent 44%),var(--bg);color:var(--txt);font:15px/1.65 system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;overflow-x:hidden}
+button,input,select{font:inherit;color:inherit}
+.wrap{max-width:1000px;margin:auto}
+.header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.logo{width:48px;height:48px;flex:none}
+.brand-name{font-size:18px;font-weight:800;letter-spacing:.8px}
+.brand-sub{font-size:11px;color:var(--gold);letter-spacing:1px;overflow-wrap:anywhere}
+.btn{min-height:46px;border:1px solid var(--line);border-radius:12px;padding:10px 16px;background:var(--panel);cursor:pointer}
+.btn:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.eyebrow{color:var(--gold);font-size:12px;font-weight:700;letter-spacing:1.5px}
+.intro h1{font-size:clamp(25px,6vw,42px);line-height:1.25;margin:8px 0}
+.intro p{color:var(--muted);max-width:680px;margin:0}
+.stepper{display:flex;gap:6px;margin:22px 0 16px}
+.step-dot{flex:1 1 0;min-width:0;border:1px solid var(--line);border-radius:12px;padding:9px 4px;text-align:center;color:var(--muted);font-size:12px;background:#111a2a}
+.step-dot .n{display:grid;place-items:center;width:26px;height:26px;margin:0 auto 4px;border-radius:50%;background:#26364c;font-weight:800}
+.step-dot.active{border-color:var(--gold);color:var(--gold2);background:#d9b87512}
+.step-dot.active .n,.step-dot.done .n{background:var(--gold);color:#171b22}
+.step-dot.done{color:var(--txt)}
+.card{background:linear-gradient(145deg,#172338f5,#101827f5);border:1px solid var(--line);border-radius:22px;padding:clamp(16px,4vw,30px);box-shadow:0 22px 55px #0003}
+.step{display:none}
+.step.active{display:block;animation:enter .25s ease}
+@keyframes enter{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+h2{margin:0 0 5px;font-size:clamp(20px,4.5vw,24px)}
+h2:focus{outline:0}
+.hint{margin:0 0 22px;color:var(--muted);font-size:13px}
+.field{margin-bottom:20px;min-width:0}
+label,.label{display:block;font-weight:700;font-size:14px;margin-bottom:8px}
+input[type=text],input[type=tel],input[type=number],select{width:100%;min-width:0;min-height:48px;background:var(--field);border:1px solid var(--line);border-radius:12px;padding:12px 13px;font-size:16px;outline:none}
+input:focus,select:focus{border-color:var(--gold)}
+select{text-overflow:ellipsis}
+.area-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.area-head label{margin:0}
+.area-box{display:flex;align-items:center;gap:8px;color:var(--gold2);font-weight:700}
+.area-box input{width:112px;text-align:center;color:var(--gold2);font-weight:800;font-size:18px;-moz-appearance:textfield;appearance:textfield}
+.area-box input::-webkit-outer-spin-button,.area-box input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+/* Slider: forced LTR so track fill, thumb and min/max labels agree in Arabic and English */
+.slider{direction:ltr}
+input[type=range]{-webkit-appearance:none;appearance:none;display:block;width:100%;height:36px;margin:4px 0;padding:0;background:none;cursor:pointer;touch-action:pan-y}
+input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:8px;background:linear-gradient(90deg,var(--gold) var(--p,0%),#26364c var(--p,0%))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;margin-top:-10px;border-radius:50%;background:var(--gold2);border:3px solid var(--gold);box-shadow:0 2px 8px #0007}
+input[type=range]::-moz-range-track{height:8px;border-radius:8px;background:#26364c}
+input[type=range]::-moz-range-progress{height:8px;border-radius:8px;background:var(--gold)}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--gold2);border:3px solid var(--gold)}
+.ends{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}
+.packages{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.choice,.extra{position:relative;cursor:pointer}
+.choice input,.extra input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.choicebox{display:block;height:100%;padding:18px 14px;border:1px solid var(--line);border-radius:15px;background:var(--field);transition:.2s}
+.choice input:checked+.choicebox,.extra input:checked+.choicebox{border-color:var(--gold);background:linear-gradient(145deg,#3b3222,#172135);box-shadow:inset 0 0 0 1px #d9b87530}
+.choice input:focus-visible+.choicebox,.extra input:focus-visible+.choicebox{outline:2px solid var(--gold)}
+.choicebox strong,.choicebox small,.choicebox em{display:block}
+.choicebox small{color:var(--muted);font-size:12px;margin:4px 0 10px}
+.choicebox em{font-style:normal;color:var(--gold2);font-weight:800}
+.extras{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.extra .choicebox small{color:var(--gold2);margin:4px 0 0}
+.phone-row{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:12px}
+.error{color:#ff9d9d;font-size:12px;min-height:20px;margin-top:5px}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+.btn.primary{background:linear-gradient(135deg,var(--gold2),var(--gold));border:0;color:#171a20;font-weight:800;min-width:130px}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:20px 0}
+.summary-item{padding:14px;border:1px solid var(--line);background:var(--field);border-radius:13px;min-width:0}
+.summary-item span{display:block;color:var(--muted);font-size:12px}
+.summary-item strong{display:block;margin-top:4px;overflow-wrap:anywhere}
+.totalbox{padding:20px;border-radius:16px;background:linear-gradient(135deg,#3a3223,#182237);border:1px solid #806b42}
+.total-label{color:var(--muted);font-size:13px}
+.total{color:var(--gold2);font-size:clamp(28px,7vw,43px);font-weight:900;line-height:1.3;overflow-wrap:anywhere}
+.total small{font-size:14px;color:var(--muted)}
+.whatsapp{display:block;width:100%;min-height:52px;padding:14px;border:0;border-radius:13px;background:linear-gradient(135deg,#36e77e,#1bb75a);color:#062414;font-weight:900;cursor:pointer;margin-top:18px}
+.foot{text-align:center;color:#8290a5;font-size:12px;margin:20px 0}
+.hidden{display:none!important}
+@media(max-width:600px){
+.phone-row{grid-template-columns:1fr}
+.packages{grid-template-columns:1fr}
+.choice .choicebox{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.choice small{margin:0}
+.step-dot{padding:8px 2px}
+.step-dot:not(.active) .l{display:none}
+.step-dot.active{flex:2.4 1 0}
+.nav .btn{flex:1}
+.nav .btn.primary{min-width:0}
+.card{border-radius:17px}
+}
+@media(max-width:360px){.brand-name{font-size:16px}.logo{width:40px;height:40px}.area-box input{width:96px}}
+@media(prefers-reduced-motion:reduce){.step.active{animation:none}*{transition:none!important}}
+</style>
 </head>
 <body>
-<p> Hello </p>
+<div class="wrap">
+<header class="header">
+ <div class="brand">
+  <svg class="logo" viewBox="0 0 64 64" role="img" aria-label="MHA TRIO">
+   <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f3dfb1"/><stop offset="1" stop-color="#b18a48"/></linearGradient></defs>
+   <path d="M32 2 59 17.5v29L32 62 5 46.5v-29Z" fill="#172337" stroke="url(#g)" stroke-width="2"/>
+   <path d="M13 43V25l7 8 7-8v18M27 43V25l7 8 7-8v18M41 43V25l7 8 3-4" fill="none" stroke="url(#g)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+   <circle cx="32" cy="14" r="2" fill="#f3dfb1"/>
+  </svg>
+  <div><div class="brand-name">MHA <span style="color:var(--gold)">TRIO</span></div><div class="brand-sub" data-i="brandSub"></div></div>
+ </div>
+ <button class="btn" id="lang" type="button"></button>
+</header>
+
+<section class="intro"><div class="eyebrow" data-i="eyebrow"></div><h1 data-i="title"></h1><p data-i="intro"></p></section>
+
+<div class="stepper" id="stepper"></div>
+
+<main class="card">
+ <section class="step" data-step="0">
+  <h2 tabindex="-1" data-i="propertyTitle"></h2><p class="hint" data-i="propertyHint"></p>
+  <div class="field"><label for="property" data-i="propertyType"></label><select id="property"></select></div>
+  <div class="field">
+   <div class="area-head"><label for="areaNum" data-i="area"></label><div class="area-box"><input id="areaNum" type="number" inputmode="numeric" min="50" max="5000" step="1"><span data-i="sqm"></span></div></div>
+   <div class="slider"><input id="area" type="range" min="50" max="5000" step="10" aria-labelledby="areaLbl"><div class="ends"><span id="minL"></span><span id="maxL"></span></div></div>
+   <span id="areaLbl" class="hidden" data-i="area"></span>
+  </div>
+  <div class="nav"><span></span><button class="btn primary next" type="button"></button></div>
+ </section>
+
+ <section class="step" data-step="1">
+  <h2 tabindex="-1" data-i="packageTitle"></h2><p class="hint" data-i="packageHint"></p>
+  <div class="packages" id="packs"></div>
+  <div class="nav"><button class="btn back" type="button"></button><button class="btn primary next" type="button"></button></div>
+ </section>
+
+ <section class="step" data-step="2">
+  <h2 tabindex="-1" data-i="extrasTitle"></h2><p class="hint" data-i="extrasHint"></p>
+  <div class="extras">
+   <label class="extra"><input id="threeD" type="checkbox"><span class="choicebox"><strong data-i="threeD"></strong><small id="threeDP"></small></span></label>
+   <label class="extra"><input id="smart" type="checkbox"><span class="choicebox"><strong data-i="smart"></strong><small id="smartP"></small></span></label>
+  </div>
+  <div class="nav"><button class="btn back" type="button"></button><button class="btn primary next" type="button"></button></div>
+ </section>
+
+ <section class="step" data-step="3">
+  <h2 tabindex="-1" data-i="contactTitle"></h2><p class="hint" data-i="contactHint"></p>
+  <div class="field"><label for="name" data-i="name"></label><input id="name" type="text" autocomplete="name"><div class="error" id="nameError"></div></div>
+  <div class="phone-row">
+   <div class="field"><label for="country" data-i="country"></label><select id="country"></select></div>
+   <div class="field"><label for="phone" data-i="phone"></label><input id="phone" type="tel" inputmode="numeric" autocomplete="tel-national" dir="ltr"><div class="error" id="phoneError"></div></div>
+  </div>
+  <div id="otherCodeWrap" class="field hidden"><label for="otherCode" data-i="callingCode"></label><input id="otherCode" type="text" inputmode="numeric" maxlength="4" dir="ltr" placeholder="212"></div>
+  <div class="nav"><button class="btn back" type="button"></button><button class="btn primary" id="review" type="button" data-i="review"></button></div>
+ </section>
+
+ <section class="step" data-step="4">
+  <h2 tabindex="-1" data-i="reviewTitle"></h2><p class="hint" data-i="reviewHint"></p>
+  <div class="totalbox"><div class="total-label" data-i="est"></div><div class="total" id="total"></div><div class="total-label" id="duration"></div></div>
+  <div class="summary-grid" id="summary"></div>
+  <button class="whatsapp" id="send" type="button" data-i="send"></button>
+  <div class="nav"><button class="btn back" type="button"></button><button class="btn" id="restart" type="button" data-i="restart"></button></div>
+ </section>
+</main>
+<footer class="foot" data-i="footer"></footer>
+</div>
+
+<script>
+(()=>{
+const $=id=>document.getElementById(id),$$=s=>[...document.querySelectorAll(s)];
+const WA='201008530103',MIN=50,MAX=5000,PACKS=[['eco',3000],['lux',4500],['vip',6500]],X={threeD:10000,smart:25000};
+const PROPS=[['apartment','شقة','Apartment'],['villa','فيلا','Villa'],['duplex','دوبلكس','Duplex'],['penthouse','بنتهاوس','Penthouse'],['building','عمارة / مبنى','Building'],['commercial','وحدة تجارية / إدارية','Commercial / office unit'],['land','أرض / مشروع خاص','Land / custom project']];
+// code, calling code, national length (0 = free), Arabic name, English name, required first digit
+const CTRY=[['EG','20',10,'مصر','Egypt','1'],['SA','966',9,'السعودية','Saudi Arabia','5'],['AE','971',9,'الإمارات','United Arab Emirates','5'],['KW','965',8,'الكويت','Kuwait'],['QA','974',8,'قطر','Qatar'],['BH','973',8,'البحرين','Bahrain'],['OM','968',8,'عُمان','Oman'],['JO','962',9,'الأردن','Jordan'],['US','1',10,'الولايات المتحدة','United States'],['GB','44',10,'المملكة المتحدة','United Kingdom'],['IN','91',10,'الهند','India'],['OTHER','',0,'دولة أخرى (أدخل المفتاح)','Other (enter calling code)']];
+const TR={
+ar:{pageTitle:'MHA TRIO | تشطيبات وتصميم داخلي',langBtn:'English',brandSub:'محمد • حسن • أحمد | تشطيبات وتصميم داخلي',eyebrow:'حاسبة MHA TRIO للتشطيبات',title:'مقايسة تشطيب تبدأ من رؤيتك',intro:'أكمل الخطوات بالترتيب لتحصل على تقدير مبدئي واضح، ثم أرسل تفاصيل طلبك إلى MHA TRIO عبر واتساب.',steps:['العقار','الباقة','الإضافات','بياناتك','الإرسال'],propertyTitle:'أولًا: تفاصيل العقار',propertyHint:'حدد نوع العقار والمساحة الإجمالية.',propertyType:'نوع العقار',area:'مساحة العقار',sqm:'م²',packageTitle:'ثانيًا: اختر مستوى التشطيب',packageHint:'يمكنك تغيير الباقة قبل إرسال الطلب.',eco:'اقتصادية',ecoD:'عملية وأساسية',lux:'لوكس',luxD:'أناقة متوازنة',vip:'VIP',vipD:'خامات وتجهيزات مميزة',per:'ج.م/م²',extrasTitle:'ثالثًا: إضافات اختيارية',extrasHint:'حدد الخدمات الإضافية التي ترغب في تضمينها.',threeD:'تصميم داخلي 3D',smart:'تأسيس سمارت هوم',contactTitle:'رابعًا: بيانات التواصل',contactHint:'أدخل اسمك ورقمك مع اختيار مفتاح الدولة للتحقق من تنسيق الرقم.',name:'الاسم بالكامل',country:'الدولة / مفتاح الاتصال',phone:'رقم الهاتف بدون مفتاح الدولة',callingCode:'مفتاح الدولة (أرقام فقط)',next:'متابعة ←',back:'→ رجوع',review:'عرض المقايسة ←',reviewTitle:'مراجعة المقايسة والإرسال',reviewHint:'راجع التفاصيل التالية. عند الضغط على الزر، ستفتح واتساب برسالة جاهزة لتراجعها وترسلها بنفسك.',est:'إجمالي التكلفة التقديرية',send:'📲 إرسال تفاصيل المقايسة عبر واتساب',restart:'بدء مقايسة جديدة',footer:'الأسعار والمدة تقديرية بالجنيه المصري، وتخضع للمراجعة بعد معاينة الموقع.',duration:'مدة التنفيذ المتوقعة',property:'نوع العقار',areaL:'المساحة',pack:'الباقة',extrasL:'الإضافات',base:'تكلفة التشطيب',extraCost:'تكلفة الإضافات',totalL:'الإجمالي',client:'العميل',clientPhone:'رقم التواصل',none:'لا توجد',days:'يومًا',comma:'، ',nameErr:'من فضلك أدخل اسمك.',phoneErr:'أدخل رقمًا صحيحًا وفقًا لمفتاح الدولة المحدد.',codeErr:'أدخل مفتاح الدولة من رقم إلى أربعة أرقام.',waTitle:'طلب مقايسة تشطيبات - MHA TRIO',waIntro:'أرغب في مراجعة مقايسة التشطيب التالية:',egp:'ج.م',sqmName:'متر مربع',phN:'أدخل {n} أرقام بدون الصفر',phAny:'رقم الهاتف المحلي'},
+en:{pageTitle:'MHA TRIO | Finishing & Interiors',langBtn:'العربية',brandSub:'MOHAMMED • HASSAN • AHMED | INTERIORS',eyebrow:'MHA TRIO FINISHING ESTIMATOR',title:'A finishing quote shaped around your vision',intro:'Complete each step to get a preliminary estimate, then share your request with MHA TRIO through WhatsApp.',steps:['Property','Package','Add-ons','Contact','Send'],propertyTitle:'Step 1: Property details',propertyHint:'Choose the property type and total area.',propertyType:'Property type',area:'Property area',sqm:'m²',packageTitle:'Step 2: Choose your finish',packageHint:'You can change the package before sending.',eco:'Economy',ecoD:'Practical essentials',lux:'Lux',luxD:'Balanced elegance',vip:'VIP',vipD:'Premium materials & fixtures',per:'EGP/m²',extrasTitle:'Step 3: Optional add-ons',extrasHint:'Choose any additional services you need.',threeD:'3D interior design',smart:'Smart home infrastructure',contactTitle:'Step 4: Contact details',contactHint:'Enter your name and phone number, then choose the country calling code for validation.',name:'Full name',country:'Country / calling code',phone:'Phone number without country code',callingCode:'Country calling code (digits only)',next:'Continue →',back:'← Back',review:'Review estimate →',reviewTitle:'Review & send your estimate',reviewHint:'Review the details below. WhatsApp will open with a prepared message for you to check and send yourself.',est:'Estimated total cost',send:'📲 Send estimate details via WhatsApp',restart:'Start a new estimate',footer:'Prices and timeline are estimates in EGP and are subject to a site inspection.',duration:'Estimated timeline',property:'Property type',areaL:'Area',pack:'Package',extrasL:'Add-ons',base:'Finishing cost',extraCost:'Add-ons cost',totalL:'Estimated total',client:'Client',clientPhone:'Contact number',none:'None',days:'days',comma:', ',nameErr:'Please enter your name.',phoneErr:'Enter a valid number for the selected country code.',codeErr:'Enter a calling code of 1–4 digits.',waTitle:'Finishing estimate request - MHA TRIO',waIntro:'I would like to review this finishing estimate:',egp:'EGP',sqmName:'square meters',phN:'Enter {n} digits, no leading 0',phAny:'Local phone number'}};
+
+let lang='ar',cur=0,area=150,pack=4500;
+try{const s=localStorage.getItem('mha-lang');if(s==='ar'||s==='en')lang=s;}catch(e){}
+const t=k=>TR[lang][k];
+const fmt=n=>new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(n);
+const money=n=>`${fmt(n)} ${t('egp')}`;
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ci=()=>CTRY[$('country').selectedIndex];
+const ccode=()=>ci()[0]==='OTHER'?$('otherCode').value.replace(/\D/g,''):ci()[1];
+const natl=()=>$('phone').value.replace(/\D/g,'').replace(/^0+/,'');
+const packKey=r=>PACKS.find(p=>p[1]===r)[0];
+
+function calc(){const base=area*pack,extras=($('threeD').checked?X.threeD:0)+($('smart').checked?X.smart:0);return{base,extras,total:base+extras,days:15+Math.ceil(area/20)};}
+
+function paintArea(){$('area').value=area;$('areaNum').value=area;$('area').style.setProperty('--p',((Math.min(MAX,Math.max(MIN,area))-MIN)/(MAX-MIN)*100)+'%');}
+function setArea(v){area=Math.min(MAX,Math.max(MIN,Math.round(+v)||MIN));paintArea();}
+
+function validPhone(show){
+ const c=ci(),n=natl(),code=ccode();let ok;
+ if(c[0]==='OTHER')ok=code.length>=1&&code.length<=4&&n.length>=6&&n.length<=14;
+ else ok=n.length===c[2]&&(!c[5]||n.startsWith(c[5]));
+ if(show){$('phoneError').textContent=ok?'':(c[0]==='OTHER'&&(!code||code.length>4)?t('codeErr'):t('phoneErr'));}
+ return ok;
+}
+
+function renderStatic(){
+ $$('[data-i]').forEach(e=>e.textContent=t(e.dataset.i));
+ $$('.back').forEach(e=>e.textContent=t('back'));
+ $$('.next').forEach(e=>e.textContent=t('next'));
+ $('lang').textContent=t('langBtn');
+ $('lang').setAttribute('aria-label',lang==='ar'?'Switch to English':'التبديل إلى العربية');
+ document.title=t('pageTitle');
+ document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+ $('stepper').innerHTML=TR[lang].steps.map((s,i)=>`<div class="step-dot"><span class="n">${i+1}</span><span class="l">${s}</span></div>`).join('');
+ $('minL').textContent=`${fmt(MIN)} ${t('sqm')}`;$('maxL').textContent=`${fmt(MAX)} ${t('sqm')}`;
+ $('threeDP').textContent=`+ ${money(X.threeD)}`;$('smartP').textContent=`+ ${money(X.smart)}`;
+ const ps=$('property').selectedIndex;
+ $('property').innerHTML=PROPS.map(p=>`<option value="${p[0]}">${lang==='ar'?p[1]:p[2]}</option>`).join('');$('property').selectedIndex=Math.max(0,ps);
+ const cs=$('country').selectedIndex;
+ $('country').innerHTML=CTRY.map(c=>`<option value="${c[0]}">${lang==='ar'?c[3]:c[4]}${c[1]?` (+${c[1]})`:''}</option>`).join('');$('country').selectedIndex=Math.max(0,cs);
+ $('packs').innerHTML=PACKS.map(([k,r])=>`<label class="choice"><input type="radio" name="pack" value="${r}"${r===pack?' checked':''}><span class="choicebox"><span><strong>${t(k)}</strong><small>${t(k+'D')}</small></span><em>${fmt(r)} ${t('per')}</em></span></label>`).join('');
+ $$('input[name=pack]').forEach(r=>r.addEventListener('change',()=>{pack=+r.value;}));
+ setPhoneUI();
+}
+function setPhoneUI(){const c=ci();$('otherCodeWrap').classList.toggle('hidden',c[0]!=='OTHER');$('phone').placeholder=c[2]?t('phN').replace('{n}',c[2]):t('phAny');$('name').placeholder=t('name');}
+
+function go(i){
+ cur=i;
+ $$('.step').forEach((e,j)=>e.classList.toggle('active',j===i));
+ $$('.step-dot').forEach((e,j)=>{e.classList.toggle('active',j===i);e.classList.toggle('done',j<i);});
+ if(i===4)renderSummary();
+ window.scrollTo({top:0,behavior:'smooth'});
+ const h=document.querySelector('.step.active h2');if(h)h.focus({preventScroll:true});
+}
+
+function packLabel(){return `${t(packKey(pack))} — ${fmt(pack)} ${t('egp')}/${t('sqm')}`;}
+function extraNames(){const a=[];if($('threeD').checked)a.push(t('threeD'));if($('smart').checked)a.push(t('smart'));return a;}
+function renderSummary(){
+ const c=calc(),prop=$('property').selectedOptions[0].textContent;
+ $('total').innerHTML=`${fmt(c.total)} <small>${t('egp')}</small>`;
+ $('duration').textContent=`${t('duration')}: ${fmt(c.days)} ${t('days')}`;
+ const rows=[[t('client'),esc($('name').value.trim())],[t('clientPhone'),`<bdi dir="ltr">+${ccode()} ${esc(natl())}</bdi>`],[t('property'),esc(prop)],[t('areaL'),`${fmt(area)} ${t('sqm')}`],[t('pack'),esc(packLabel())],[t('extrasL'),esc(extraNames().join(t('comma'))||t('none'))],[t('base'),money(c.base)],[t('extraCost'),money(c.extras)]];
+ $('summary').innerHTML=rows.map(([a,b])=>`<div class="summary-item"><span>${a}</span><strong>${b}</strong></div>`).join('');
+}
+
+function setLang(next){
+ lang=next;try{localStorage.setItem('mha-lang',lang);}catch(e){}
+ $('nameError').textContent='';$('phoneError').textContent='';
+ renderStatic();go(cur);
+}
+
+// events
+document.addEventListener('click',e=>{
+ if(e.target.closest('.next'))go(Math.min(4,cur+1));
+ else if(e.target.closest('.back'))go(Math.max(0,cur-1));
+});
+$('lang').addEventListener('click',()=>setLang(lang==='ar'?'en':'ar'));
+$('area').addEventListener('input',e=>setArea(e.target.value));
+$('areaNum').addEventListener('input',e=>{const v=+e.target.value;if(v>=MIN&&v<=MAX){area=Math.round(v);$('area').value=area;$('area').style.setProperty('--p',((area-MIN)/(MAX-MIN)*100)+'%');}});
+$('areaNum').addEventListener('change',()=>setArea($('areaNum').value));
+$('country').addEventListener('change',()=>{$('phone').value='';$('phoneError').textContent='';setPhoneUI();});
+$('name').addEventListener('input',()=>$('nameError').textContent='');
+$('phone').addEventListener('input',()=>{$('phone').value=$('phone').value.replace(/[^\d\s()-]/g,'');$('phoneError').textContent='';});
+$('review').addEventListener('click',()=>{
+ let ok=true;
+ if(!$('name').value.trim()){$('nameError').textContent=t('nameErr');ok=false;}else $('nameError').textContent='';
+ if(!validPhone(true))ok=false;
+ if(ok)go(4);
+});
+$('restart').addEventListener('click',()=>{
+ pack=4500;$('property').selectedIndex=0;$('threeD').checked=false;$('smart').checked=false;
+ $('name').value='';$('phone').value='';$('otherCode').value='';$('country').selectedIndex=0;
+ $('nameError').textContent='';$('phoneError').textContent='';
+ setArea(150);renderStatic();go(0);
+});
+$('send').addEventListener('click',()=>{
+ if(!$('name').value.trim()||!validPhone(false)){go(3);$('review').click();return;}
+ const c=calc(),msg=[`*${t('waTitle')}*`,t('waIntro'),`${t('client')}: ${$('name').value.trim()}`,`${t('clientPhone')}: +${ccode()}${natl()}`,`${t('property')}: ${$('property').selectedOptions[0].textContent}`,`${t('areaL')}: ${fmt(area)} ${t('sqmName')}`,`${t('pack')}: ${packLabel()}`,`${t('extrasL')}: ${extraNames().join(t('comma'))||t('none')}`,`${t('base')}: ${money(c.base)}`,`${t('extraCost')}: ${money(c.extras)}`,`*${t('totalL')}: ${money(c.total)}*`,`${t('duration')}: ${fmt(c.days)} ${t('days')}`].join('\n');
+ const url=`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+ if(!window.open(url,'_blank','noopener,noreferrer'))location.assign(url);
+});
+
+renderStatic();setArea(area);go(0);
+})();
+</script>
 </body>
 </html>
